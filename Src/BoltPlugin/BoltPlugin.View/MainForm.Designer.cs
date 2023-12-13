@@ -41,8 +41,8 @@
             this.threadDiameterTextBox = new System.Windows.Forms.TextBox();
             this.turnkeySizeTextBox = new System.Windows.Forms.TextBox();
             this.boltHeadHeightTextBox = new System.Windows.Forms.TextBox();
-            this.boltLenghtTextBox = new System.Windows.Forms.TextBox();
-            this.threadLenghtTextBox = new System.Windows.Forms.TextBox();
+            this.boltLengthTextBox = new System.Windows.Forms.TextBox();
+            this.threadLengthTextBox = new System.Windows.Forms.TextBox();
             this.buildButton = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -145,6 +145,8 @@
             this.threadDiameterTextBox.Size = new System.Drawing.Size(100, 20);
             this.threadDiameterTextBox.TabIndex = 10;
             this.threadDiameterTextBox.Text = "20";
+            this.threadDiameterTextBox.TextChanged += new System.EventHandler(this.threadDiameterTextBox_TextChanged);
+            this.threadDiameterTextBox.MouseEnter += new System.EventHandler(this.threadDiameterTextBox_MouseEnter);
             // 
             // turnkeySizeTextBox
             // 
@@ -153,6 +155,8 @@
             this.turnkeySizeTextBox.Size = new System.Drawing.Size(100, 20);
             this.turnkeySizeTextBox.TabIndex = 11;
             this.turnkeySizeTextBox.Text = "40";
+            this.turnkeySizeTextBox.TextChanged += new System.EventHandler(this.turnkeySizeTextBox_TextChanged);
+            this.turnkeySizeTextBox.MouseEnter += new System.EventHandler(this.turnkeySizeTextBox_MouseEnter);
             // 
             // boltHeadHeightTextBox
             // 
@@ -161,22 +165,28 @@
             this.boltHeadHeightTextBox.Size = new System.Drawing.Size(100, 20);
             this.boltHeadHeightTextBox.TabIndex = 12;
             this.boltHeadHeightTextBox.Text = "20";
+            this.boltHeadHeightTextBox.TextChanged += new System.EventHandler(this.boltHeadHeightTextBox_TextChanged);
+            this.boltHeadHeightTextBox.MouseEnter += new System.EventHandler(this.boltHeadHeightTextBox_MouseEnter);
             // 
-            // boltLenghtTextBox
+            // boltLengthTextBox
             // 
-            this.boltLenghtTextBox.Location = new System.Drawing.Point(205, 150);
-            this.boltLenghtTextBox.Name = "boltLenghtTextBox";
-            this.boltLenghtTextBox.Size = new System.Drawing.Size(100, 20);
-            this.boltLenghtTextBox.TabIndex = 13;
-            this.boltLenghtTextBox.Text = "100";
+            this.boltLengthTextBox.Location = new System.Drawing.Point(205, 150);
+            this.boltLengthTextBox.Name = "boltLengthTextBox";
+            this.boltLengthTextBox.Size = new System.Drawing.Size(100, 20);
+            this.boltLengthTextBox.TabIndex = 13;
+            this.boltLengthTextBox.Text = "100";
+            this.boltLengthTextBox.TextChanged += new System.EventHandler(this.boltLengthTextBox_TextChanged);
+            this.boltLengthTextBox.MouseEnter += new System.EventHandler(this.boltLengthTextBox_MouseEnter);
             // 
-            // threadLenghtTextBox
+            // threadLengthTextBox
             // 
-            this.threadLenghtTextBox.Location = new System.Drawing.Point(205, 194);
-            this.threadLenghtTextBox.Name = "threadLenghtTextBox";
-            this.threadLenghtTextBox.Size = new System.Drawing.Size(100, 20);
-            this.threadLenghtTextBox.TabIndex = 14;
-            this.threadLenghtTextBox.Text = "40";
+            this.threadLengthTextBox.Location = new System.Drawing.Point(205, 194);
+            this.threadLengthTextBox.Name = "threadLengthTextBox";
+            this.threadLengthTextBox.Size = new System.Drawing.Size(100, 20);
+            this.threadLengthTextBox.TabIndex = 14;
+            this.threadLengthTextBox.Text = "40";
+            this.threadLengthTextBox.TextChanged += new System.EventHandler(this.threadLengthTextBox_TextChanged);
+            this.threadLengthTextBox.MouseEnter += new System.EventHandler(this.threadLengthTextBox_MouseEnter);
             // 
             // buildButton
             // 
@@ -204,8 +214,8 @@
             this.ClientSize = new System.Drawing.Size(923, 276);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.buildButton);
-            this.Controls.Add(this.threadLenghtTextBox);
-            this.Controls.Add(this.boltLenghtTextBox);
+            this.Controls.Add(this.threadLengthTextBox);
+            this.Controls.Add(this.boltLengthTextBox);
             this.Controls.Add(this.boltHeadHeightTextBox);
             this.Controls.Add(this.turnkeySizeTextBox);
             this.Controls.Add(this.threadDiameterTextBox);
@@ -243,8 +253,8 @@
         private System.Windows.Forms.TextBox threadDiameterTextBox;
         private System.Windows.Forms.TextBox turnkeySizeTextBox;
         private System.Windows.Forms.TextBox boltHeadHeightTextBox;
-        private System.Windows.Forms.TextBox boltLenghtTextBox;
-        private System.Windows.Forms.TextBox threadLenghtTextBox;
+        private System.Windows.Forms.TextBox boltLengthTextBox;
+        private System.Windows.Forms.TextBox threadLengthTextBox;
         private System.Windows.Forms.Button buildButton;
         private System.Windows.Forms.PictureBox pictureBox1;
     }

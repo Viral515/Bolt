@@ -59,6 +59,12 @@
         /// <param name="e">Событие.</param>
         private void BuildButton_Click(object sender, EventArgs e)
         {
+            CheckСorrectThreadDiameter();
+            CheckСorrectTurnkeySize();
+            CheckСorrectBoltLength();
+            CheckСorrectBoltHeadHeight();
+            CheckСorrectThreadLength();
+            CheckButtonError();
             _boltBuilder.Build(_parameters);
         }
 

@@ -100,7 +100,7 @@
             this.threadLenghtSizeLabel.Name = "threadLenghtSizeLabel";
             this.threadLenghtSizeLabel.Size = new System.Drawing.Size(53, 13);
             this.threadLenghtSizeLabel.TabIndex = 9;
-            this.threadLenghtSizeLabel.Text = "6-300 мм";
+            this.threadLenghtSizeLabel.Text = "6-299 мм";
             // 
             // boltLenghtSizeLabel
             // 

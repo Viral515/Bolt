@@ -44,14 +44,22 @@
             this.boltLengthTextBox = new System.Windows.Forms.TextBox();
             this.threadLengthTextBox = new System.Windows.Forms.TextBox();
             this.buildButton = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.typeBoltHeadGroupBox = new System.Windows.Forms.GroupBox();
+            this.roundedBoltHeadRadioButton = new System.Windows.Forms.RadioButton();
+            this.hexagonalBoltHeadRadioButton = new System.Windows.Forms.RadioButton();
+            this.boltHeadLabel = new System.Windows.Forms.Label();
+            this.headRestHeightLabel = new System.Windows.Forms.Label();
+            this.headRestHeightTextBox = new System.Windows.Forms.TextBox();
+            this.headRestHeightSizeLabel = new System.Windows.Forms.Label();
+            this.boltPlanPictureBox = new System.Windows.Forms.PictureBox();
+            this.typeBoltHeadGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.boltPlanPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // threadDiameterLabel
             // 
             this.threadDiameterLabel.AutoSize = true;
-            this.threadDiameterLabel.Location = new System.Drawing.Point(18, 26);
+            this.threadDiameterLabel.Location = new System.Drawing.Point(16, 12);
             this.threadDiameterLabel.Name = "threadDiameterLabel";
             this.threadDiameterLabel.Size = new System.Drawing.Size(181, 13);
             this.threadDiameterLabel.TabIndex = 0;
@@ -60,7 +68,7 @@
             // turnkeySizeLabel
             // 
             this.turnkeySizeLabel.AutoSize = true;
-            this.turnkeySizeLabel.Location = new System.Drawing.Point(18, 69);
+            this.turnkeySizeLabel.Location = new System.Drawing.Point(16, 41);
             this.turnkeySizeLabel.Name = "turnkeySizeLabel";
             this.turnkeySizeLabel.Size = new System.Drawing.Size(118, 13);
             this.turnkeySizeLabel.TabIndex = 1;
@@ -69,7 +77,7 @@
             // boltHeadHeightLabel
             // 
             this.boltHeadHeightLabel.AutoSize = true;
-            this.boltHeadHeightLabel.Location = new System.Drawing.Point(18, 112);
+            this.boltHeadHeightLabel.Location = new System.Drawing.Point(16, 67);
             this.boltHeadHeightLabel.Name = "boltHeadHeightLabel";
             this.boltHeadHeightLabel.Size = new System.Drawing.Size(104, 13);
             this.boltHeadHeightLabel.TabIndex = 2;
@@ -78,7 +86,7 @@
             // boltLenghtLabel
             // 
             this.boltLenghtLabel.AutoSize = true;
-            this.boltLenghtLabel.Location = new System.Drawing.Point(18, 153);
+            this.boltLenghtLabel.Location = new System.Drawing.Point(16, 93);
             this.boltLenghtLabel.Name = "boltLenghtLabel";
             this.boltLenghtLabel.Size = new System.Drawing.Size(87, 13);
             this.boltLenghtLabel.TabIndex = 3;
@@ -87,7 +95,7 @@
             // threadLenghtLabel
             // 
             this.threadLenghtLabel.AutoSize = true;
-            this.threadLenghtLabel.Location = new System.Drawing.Point(18, 197);
+            this.threadLenghtLabel.Location = new System.Drawing.Point(16, 119);
             this.threadLenghtLabel.Name = "threadLenghtLabel";
             this.threadLenghtLabel.Size = new System.Drawing.Size(96, 13);
             this.threadLenghtLabel.TabIndex = 4;
@@ -96,16 +104,16 @@
             // threadLenghtSizeLabel
             // 
             this.threadLenghtSizeLabel.AutoSize = true;
-            this.threadLenghtSizeLabel.Location = new System.Drawing.Point(311, 197);
+            this.threadLenghtSizeLabel.Location = new System.Drawing.Point(309, 119);
             this.threadLenghtSizeLabel.Name = "threadLenghtSizeLabel";
             this.threadLenghtSizeLabel.Size = new System.Drawing.Size(53, 13);
             this.threadLenghtSizeLabel.TabIndex = 9;
-            this.threadLenghtSizeLabel.Text = "6-299 мм";
+            this.threadLenghtSizeLabel.Text = "6-280 мм";
             // 
             // boltLenghtSizeLabel
             // 
             this.boltLenghtSizeLabel.AutoSize = true;
-            this.boltLenghtSizeLabel.Location = new System.Drawing.Point(311, 153);
+            this.boltLenghtSizeLabel.Location = new System.Drawing.Point(309, 93);
             this.boltLenghtSizeLabel.Name = "boltLenghtSizeLabel";
             this.boltLenghtSizeLabel.Size = new System.Drawing.Size(53, 13);
             this.boltLenghtSizeLabel.TabIndex = 8;
@@ -114,7 +122,7 @@
             // boltHeadHeightSizeLabel
             // 
             this.boltHeadHeightSizeLabel.AutoSize = true;
-            this.boltHeadHeightSizeLabel.Location = new System.Drawing.Point(311, 112);
+            this.boltHeadHeightSizeLabel.Location = new System.Drawing.Point(309, 67);
             this.boltHeadHeightSizeLabel.Name = "boltHeadHeightSizeLabel";
             this.boltHeadHeightSizeLabel.Size = new System.Drawing.Size(47, 13);
             this.boltHeadHeightSizeLabel.TabIndex = 7;
@@ -123,7 +131,7 @@
             // turnkeySizeCountLabel
             // 
             this.turnkeySizeCountLabel.AutoSize = true;
-            this.turnkeySizeCountLabel.Location = new System.Drawing.Point(311, 69);
+            this.turnkeySizeCountLabel.Location = new System.Drawing.Point(309, 41);
             this.turnkeySizeCountLabel.Name = "turnkeySizeCountLabel";
             this.turnkeySizeCountLabel.Size = new System.Drawing.Size(53, 13);
             this.turnkeySizeCountLabel.TabIndex = 6;
@@ -132,7 +140,7 @@
             // threadDiameterSizeLabel
             // 
             this.threadDiameterSizeLabel.AutoSize = true;
-            this.threadDiameterSizeLabel.Location = new System.Drawing.Point(311, 26);
+            this.threadDiameterSizeLabel.Location = new System.Drawing.Point(309, 12);
             this.threadDiameterSizeLabel.Name = "threadDiameterSizeLabel";
             this.threadDiameterSizeLabel.Size = new System.Drawing.Size(47, 13);
             this.threadDiameterSizeLabel.TabIndex = 5;
@@ -140,7 +148,7 @@
             // 
             // threadDiameterTextBox
             // 
-            this.threadDiameterTextBox.Location = new System.Drawing.Point(205, 23);
+            this.threadDiameterTextBox.Location = new System.Drawing.Point(203, 9);
             this.threadDiameterTextBox.Name = "threadDiameterTextBox";
             this.threadDiameterTextBox.Size = new System.Drawing.Size(100, 20);
             this.threadDiameterTextBox.TabIndex = 10;
@@ -150,7 +158,7 @@
             // 
             // turnkeySizeTextBox
             // 
-            this.turnkeySizeTextBox.Location = new System.Drawing.Point(205, 66);
+            this.turnkeySizeTextBox.Location = new System.Drawing.Point(203, 38);
             this.turnkeySizeTextBox.Name = "turnkeySizeTextBox";
             this.turnkeySizeTextBox.Size = new System.Drawing.Size(100, 20);
             this.turnkeySizeTextBox.TabIndex = 11;
@@ -160,7 +168,7 @@
             // 
             // boltHeadHeightTextBox
             // 
-            this.boltHeadHeightTextBox.Location = new System.Drawing.Point(205, 109);
+            this.boltHeadHeightTextBox.Location = new System.Drawing.Point(203, 64);
             this.boltHeadHeightTextBox.Name = "boltHeadHeightTextBox";
             this.boltHeadHeightTextBox.Size = new System.Drawing.Size(100, 20);
             this.boltHeadHeightTextBox.TabIndex = 12;
@@ -170,7 +178,7 @@
             // 
             // boltLengthTextBox
             // 
-            this.boltLengthTextBox.Location = new System.Drawing.Point(205, 150);
+            this.boltLengthTextBox.Location = new System.Drawing.Point(203, 90);
             this.boltLengthTextBox.Name = "boltLengthTextBox";
             this.boltLengthTextBox.Size = new System.Drawing.Size(100, 20);
             this.boltLengthTextBox.TabIndex = 13;
@@ -180,7 +188,7 @@
             // 
             // threadLengthTextBox
             // 
-            this.threadLengthTextBox.Location = new System.Drawing.Point(205, 194);
+            this.threadLengthTextBox.Location = new System.Drawing.Point(203, 116);
             this.threadLengthTextBox.Name = "threadLengthTextBox";
             this.threadLengthTextBox.Size = new System.Drawing.Size(100, 20);
             this.threadLengthTextBox.TabIndex = 14;
@@ -198,21 +206,100 @@
             this.buildButton.UseVisualStyleBackColor = true;
             this.buildButton.Click += new System.EventHandler(this.BuildButton_Click);
             // 
-            // pictureBox1
+            // typeBoltHeadGroupBox
             // 
-            this.pictureBox1.Image = global::BoltPlugin.View.Properties.Resources.болтЧ;
-            this.pictureBox1.Location = new System.Drawing.Point(392, 6);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(521, 257);
-            this.pictureBox1.TabIndex = 16;
-            this.pictureBox1.TabStop = false;
+            this.typeBoltHeadGroupBox.Controls.Add(this.roundedBoltHeadRadioButton);
+            this.typeBoltHeadGroupBox.Controls.Add(this.hexagonalBoltHeadRadioButton);
+            this.typeBoltHeadGroupBox.Location = new System.Drawing.Point(92, 179);
+            this.typeBoltHeadGroupBox.Name = "typeBoltHeadGroupBox";
+            this.typeBoltHeadGroupBox.Size = new System.Drawing.Size(265, 54);
+            this.typeBoltHeadGroupBox.TabIndex = 17;
+            this.typeBoltHeadGroupBox.TabStop = false;
+            // 
+            // roundedBoltHeadRadioButton
+            // 
+            this.roundedBoltHeadRadioButton.AutoSize = true;
+            this.roundedBoltHeadRadioButton.Location = new System.Drawing.Point(141, 19);
+            this.roundedBoltHeadRadioButton.Name = "roundedBoltHeadRadioButton";
+            this.roundedBoltHeadRadioButton.Size = new System.Drawing.Size(90, 17);
+            this.roundedBoltHeadRadioButton.TabIndex = 1;
+            this.roundedBoltHeadRadioButton.Text = "Скругленная";
+            this.roundedBoltHeadRadioButton.UseVisualStyleBackColor = true;
+            this.roundedBoltHeadRadioButton.CheckedChanged += new System.EventHandler(this.roundedBoltHeadRadioButton_CheckedChanged);
+            // 
+            // hexagonalBoltHeadRadioButton
+            // 
+            this.hexagonalBoltHeadRadioButton.AutoSize = true;
+            this.hexagonalBoltHeadRadioButton.Checked = true;
+            this.hexagonalBoltHeadRadioButton.Location = new System.Drawing.Point(19, 19);
+            this.hexagonalBoltHeadRadioButton.Name = "hexagonalBoltHeadRadioButton";
+            this.hexagonalBoltHeadRadioButton.Size = new System.Drawing.Size(98, 17);
+            this.hexagonalBoltHeadRadioButton.TabIndex = 0;
+            this.hexagonalBoltHeadRadioButton.TabStop = true;
+            this.hexagonalBoltHeadRadioButton.Text = "Шестигранная";
+            this.hexagonalBoltHeadRadioButton.UseVisualStyleBackColor = true;
+            this.hexagonalBoltHeadRadioButton.CheckedChanged += new System.EventHandler(this.hexagonalBoltHeadRadioButton_CheckedChanged);
+            // 
+            // boltHeadLabel
+            // 
+            this.boltHeadLabel.AutoSize = true;
+            this.boltHeadLabel.Location = new System.Drawing.Point(16, 198);
+            this.boltHeadLabel.Name = "boltHeadLabel";
+            this.boltHeadLabel.Size = new System.Drawing.Size(70, 13);
+            this.boltHeadLabel.TabIndex = 18;
+            this.boltHeadLabel.Text = "Тип шляпки:";
+            // 
+            // headRestHeightLabel
+            // 
+            this.headRestHeightLabel.AutoSize = true;
+            this.headRestHeightLabel.Location = new System.Drawing.Point(16, 145);
+            this.headRestHeightLabel.Name = "headRestHeightLabel";
+            this.headRestHeightLabel.Size = new System.Drawing.Size(116, 13);
+            this.headRestHeightLabel.TabIndex = 20;
+            this.headRestHeightLabel.Text = "Высота подголовка f:";
+            this.headRestHeightLabel.Visible = false;
+            // 
+            // headRestHeightTextBox
+            // 
+            this.headRestHeightTextBox.Location = new System.Drawing.Point(203, 142);
+            this.headRestHeightTextBox.Name = "headRestHeightTextBox";
+            this.headRestHeightTextBox.Size = new System.Drawing.Size(100, 20);
+            this.headRestHeightTextBox.TabIndex = 22;
+            this.headRestHeightTextBox.Text = "8";
+            this.headRestHeightTextBox.Visible = false;
+            this.headRestHeightTextBox.TextChanged += new System.EventHandler(this.headRestHeightTextBox_TextChanged);
+            this.headRestHeightTextBox.MouseEnter += new System.EventHandler(this.headRestHeightTextBox_MouseEnter);
+            // 
+            // headRestHeightSizeLabel
+            // 
+            this.headRestHeightSizeLabel.AutoSize = true;
+            this.headRestHeightSizeLabel.Location = new System.Drawing.Point(309, 145);
+            this.headRestHeightSizeLabel.Name = "headRestHeightSizeLabel";
+            this.headRestHeightSizeLabel.Size = new System.Drawing.Size(47, 13);
+            this.headRestHeightSizeLabel.TabIndex = 21;
+            this.headRestHeightSizeLabel.Text = "1-15 мм";
+            this.headRestHeightSizeLabel.Visible = false;
+            // 
+            // boltPlanPictureBox
+            // 
+            this.boltPlanPictureBox.Image = global::BoltPlugin.View.Properties.Resources.болтЧ;
+            this.boltPlanPictureBox.Location = new System.Drawing.Point(392, 6);
+            this.boltPlanPictureBox.Name = "boltPlanPictureBox";
+            this.boltPlanPictureBox.Size = new System.Drawing.Size(521, 267);
+            this.boltPlanPictureBox.TabIndex = 16;
+            this.boltPlanPictureBox.TabStop = false;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(923, 276);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.headRestHeightTextBox);
+            this.Controls.Add(this.headRestHeightSizeLabel);
+            this.Controls.Add(this.headRestHeightLabel);
+            this.Controls.Add(this.boltHeadLabel);
+            this.Controls.Add(this.typeBoltHeadGroupBox);
+            this.Controls.Add(this.boltPlanPictureBox);
             this.Controls.Add(this.buildButton);
             this.Controls.Add(this.threadLengthTextBox);
             this.Controls.Add(this.boltLengthTextBox);
@@ -232,7 +319,9 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "MainForm";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.typeBoltHeadGroupBox.ResumeLayout(false);
+            this.typeBoltHeadGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.boltPlanPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -256,7 +345,14 @@
         private System.Windows.Forms.TextBox boltLengthTextBox;
         private System.Windows.Forms.TextBox threadLengthTextBox;
         private System.Windows.Forms.Button buildButton;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox boltPlanPictureBox;
+        private System.Windows.Forms.GroupBox typeBoltHeadGroupBox;
+        private System.Windows.Forms.RadioButton roundedBoltHeadRadioButton;
+        private System.Windows.Forms.RadioButton hexagonalBoltHeadRadioButton;
+        private System.Windows.Forms.Label boltHeadLabel;
+        private System.Windows.Forms.Label headRestHeightLabel;
+        private System.Windows.Forms.TextBox headRestHeightTextBox;
+        private System.Windows.Forms.Label headRestHeightSizeLabel;
     }
 }
 

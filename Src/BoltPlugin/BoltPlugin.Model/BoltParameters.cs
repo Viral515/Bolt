@@ -55,7 +55,17 @@
         /// <summary>
         /// Максимальная длина резьбы.
         /// </summary>
-        private const double MaxThreadLength = 300;
+        private const double MaxThreadLength = 280;
+
+        /// <summary>
+        /// Минимальная высота подшляпка.
+        /// </summary>
+        private const double MinHeadRestHeight = 1;
+
+        /// <summary>
+        /// Максимальная высота подшляпка.
+        /// </summary>
+        private const double MaxHeadRestHeight = 15;
 
         /// <summary>
         /// Номинальный диаметр резьбы.
@@ -83,6 +93,16 @@
         private double _threadLength;
 
         /// <summary>
+        /// Высота подголовка.
+        /// </summary>
+        private double _headRestHeight;
+
+        /// <summary>
+        /// Тип шляпки болта.
+        /// </summary>
+        private bool _boltHeadType = true;
+
+        /// <summary>
         /// Свойство для номинального диаметра резьбы.
         /// </summary>
         public double ThreadDiameter
@@ -90,13 +110,28 @@
             get => this._threadDiameter;
             set
             {
-                if (Validator.IsValueInRange(value, MinThreadDiameter, MaxThreadDiameter))
+                if (Validator.IsValueInRange(value, MinThreadDiameter, MaxThreadDiameter)
+                    && Validator.IsValueLess(value, _turnkeySize))
                 {
                     _threadDiameter = value;
                 }
                 else
                 {
-                    throw new Exception("Диаметр резьбы должен быть в диапазоне 6-48 мм.");
+                    if (!Validator.IsValueInRange(
+                            value,
+                            MaxThreadDiameter,
+                            MinThreadDiameter))
+                    {
+                        throw new Exception("Диаметр резьбы должен быть" +
+                                            " в диапазоне 6-48 мм.");
+                    }
+                    else
+                    {
+                        {
+                            throw new Exception("Диаметр резьбы не должен " +
+                                                "превышать размер под ключ.");
+                        }
+                    }
                 }
             }
         }
@@ -109,14 +144,23 @@
             get => this._turnkeySize;
             set
             {
-                if (Validator.IsValueInRange(value, MinTurnkeySize, MaxTurnkeySize))
+                if (Validator.IsValueInRange(value, MinTurnkeySize, MaxTurnkeySize)
+                    && !Validator.IsValueLess(value, _threadDiameter))
                 {
                     _turnkeySize = value;
                 }
                 else
                 {
-                    throw new Exception("Размер 'под ключ' должен" +
-                                        " быть в диапазоне 10-75 мм.");
+                    if (!Validator.IsValueInRange(value, MinTurnkeySize, MaxTurnkeySize))
+                    {
+                        throw new Exception("Размер 'под ключ' должен" +
+                                            " быть в диапазоне 10-75 мм.");
+                    }
+                    else
+                    {
+                        throw new Exception("Размер 'под ключ' должен быть" +
+                                            " больше номинального диаметра резьбы.");
+                    }
                 }
             }
         }
@@ -177,10 +221,49 @@
                 }
                 else
                 {
-                    throw new Exception("Длина резьбы должна быть в диапазоне 6-300 мм," +
+                    throw new Exception("Длина резьбы должна быть в диапазоне 6-280 мм," +
                         " и не должна превышать длину болта L.");
                 }
             }
+        }
+
+        /// <summary>
+        /// Свойство для высоты подголовка.
+        /// </summary>
+        public double HeadRestHeight
+        {
+            get => _headRestHeight;
+            set
+            {
+                if (Validator.IsValueInRange(value, MinHeadRestHeight, MaxHeadRestHeight)
+                    && Validator.IsValueLess(value, _boltLength - _threadLength))
+                {
+                    _headRestHeight = value;
+                }
+                else
+                {
+                    if (!Validator.IsValueInRange(value, MinHeadRestHeight, MaxHeadRestHeight))
+                    {
+                        throw new Exception("Высота подголовка должна быть " +
+                                            "в диапазоне 3-15 мм.");
+                    }
+                    else
+                    {
+                        throw new Exception("Высота подголовка не должна " +
+                                            "превышать остаток от разности длины болта" +
+                                            "и длины резьбы.");
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Свойство для типа шляпки.
+        /// </summary>
+        public bool BoltHeadType
+        {
+            get => this._boltHeadType;
+            set => _boltHeadType = value;
         }
     }
 }

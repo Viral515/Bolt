@@ -41,7 +41,8 @@
             { nameof(turnkeySizeTextBox), true },
             { nameof(boltHeadHeightTextBox), true },
             { nameof(boltLengthTextBox), true },
-            { nameof(threadLengthTextBox), true }
+            { nameof(threadLengthTextBox), true },
+            { nameof(headRestHeightTextBox), true },
         };
 
         /// <summary>
@@ -61,9 +62,16 @@
         {
             CheckСorrectThreadDiameter();
             CheckСorrectTurnkeySize();
+            CheckСorrectThreadDiameter();
             CheckСorrectBoltLength();
             CheckСorrectBoltHeadHeight();
             CheckСorrectThreadLength();
+            CheckСorrectHeadRestHeight();
+            if (hexagonalBoltHeadRadioButton.Checked == true)
+            {
+                _dictionaryErrors[nameof(threadLengthTextBox)] = true;
+            }
+
             CheckButtonError();
             _boltBuilder.Build(_parameters);
         }
@@ -93,6 +101,7 @@
         private void threadDiameterTextBox_TextChanged(object sender, EventArgs e)
         {
             CheckСorrectThreadDiameter();
+            CheckСorrectTurnkeySize();
             CheckButtonError();
         }
 
@@ -122,6 +131,7 @@
         private void turnkeySizeTextBox_TextChanged(object sender, EventArgs e)
         {
             CheckСorrectTurnkeySize();
+            CheckСorrectThreadDiameter();
             CheckButtonError();
         }
 
@@ -210,6 +220,7 @@
         /// <param name="e">Событие.</param>
         private void threadLengthTextBox_TextChanged(object sender, EventArgs e)
         {
+            CheckСorrectBoltLength();
             CheckСorrectThreadLength();
             CheckButtonError();
         }
@@ -238,9 +249,20 @@
             {
                 var toolTip = new ToolTip();
                 toolTip.ShowAlways = false;
+                string msg = "Диаметр резьбы не должен превышать размер под" +
+                             " ключ и обязан быть в диапазоне 6-48 мм.";
+                try
+                {
+                    Convert.ToDouble(threadDiameterTextBox.Text);
+                }
+                catch (Exception exception)
+                {
+                    msg = "Строка не должна содержать символы.";
+                }
+
                 toolTip.SetToolTip(
                     threadDiameterTextBox,
-                    "Диаметр резьбы должен быть в диапазоне 6-48 мм.");
+                    msg);
             }
         }
 
@@ -250,9 +272,21 @@
             {
                 var toolTip = new ToolTip();
                 toolTip.ShowAlways = false;
+                string msg = "Размер 'под ключ' должен быть больше " +
+                             "номинального диаметра резьбы и находится в " +
+                             "диапазоне 10-75 мм.";
+                try
+                {
+                    Convert.ToDouble(turnkeySizeTextBox.Text);
+                }
+                catch (Exception exception)
+                {
+                    msg = "Строка не должна содержать символы.";
+                }
+
                 toolTip.SetToolTip(
                     turnkeySizeTextBox,
-                    "Размер 'под ключ' должен быть в диапазоне 10-75 мм.");
+                    msg);
             }
         }
 
@@ -262,10 +296,20 @@
             {
                 var toolTip = new ToolTip();
                 toolTip.ShowAlways = false;
+                string msg = "Высота головки должна быть в диапазоне " +
+                             "4-30 мм, и не должна превышать длину болта L.";
+                try
+                {
+                    Convert.ToDouble(boltHeadHeightTextBox.Text);
+                }
+                catch (Exception exception)
+                {
+                    msg = "Строка не должна содержать символы.";
+                }
+
                 toolTip.SetToolTip(
                     boltHeadHeightTextBox,
-                    "Высота головки должна быть в диапазоне " +
-                    "4-30 мм, и не должна превышать длину болта L.");
+                    msg);
             }
         }
 
@@ -275,9 +319,19 @@
             {
                 var toolTip = new ToolTip();
                 toolTip.ShowAlways = false;
+                string msg = "Длина болта должна быть в диапазоне 8-300 мм.";
+                try
+                {
+                    Convert.ToDouble(boltLengthTextBox.Text);
+                }
+                catch (Exception exception)
+                {
+                    msg = "Строка не должна содержать символы.";
+                }
+
                 toolTip.SetToolTip(
                     boltLengthTextBox,
-                    "Длина болта должна быть в диапазоне 8-300 мм.");
+                    msg);
             }
         }
 
@@ -287,10 +341,85 @@
             {
                 var toolTip = new ToolTip();
                 toolTip.ShowAlways = false;
+                string msg = "Длина резьбы должна быть в диапазоне 6-300 мм," +
+                             " и не должна превышать длину болта L.";
+                try
+                {
+                    Convert.ToDouble(threadLengthTextBox.Text);
+                }
+                catch (Exception exception)
+                {
+                    msg = "Строка не должна содержать символы.";
+                }
+
                 toolTip.SetToolTip(
                     threadLengthTextBox,
-                    "Длина резьбы должна быть в диапазоне 6-300 мм," +
-                    " и не должна превышать длину болта L.");
+                    msg);
+            }
+        }
+
+        private void hexagonalBoltHeadRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            headRestHeightLabel.Visible = false;
+            headRestHeightTextBox.Visible = false;
+            headRestHeightSizeLabel.Visible = false;
+            turnkeySizeLabel.Text = "Размер \"под ключ\" S:";
+            boltPlanPictureBox.Image = BoltPlugin.View.Properties.Resources.болтЧ;
+            _parameters.BoltHeadType = true;
+        }
+
+        private void roundedBoltHeadRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            headRestHeightLabel.Visible = true;
+            headRestHeightTextBox.Visible = true;
+            headRestHeightSizeLabel.Visible = true;
+            turnkeySizeLabel.Text = "Диаметр головки:";
+            boltPlanPictureBox.Image = BoltPlugin.View.Properties.Resources.МебельныйБолтЧ;
+            _parameters.BoltHeadType = false;
+        }
+
+        private void headRestHeightTextBox_TextChanged(object sender, EventArgs e)
+        {
+            CheckСorrectHeadRestHeight();
+            CheckButtonError();
+        }
+
+        private void CheckСorrectHeadRestHeight()
+        {
+            try
+            {
+                headRestHeightTextBox.BackColor = _correctСolor;
+                _parameters.HeadRestHeight = System.Convert.ToDouble(headRestHeightTextBox.Text);
+                _dictionaryErrors[nameof(headRestHeightTextBox)] = true;
+            }
+            catch (Exception)
+            {
+                headRestHeightTextBox.BackColor = _errorColor;
+                _dictionaryErrors[nameof(headRestHeightTextBox)] = false;
+            }
+        }
+
+        private void headRestHeightTextBox_MouseEnter(object sender, EventArgs e)
+        {
+            if (_dictionaryErrors["headRestHeightTextBox"] == false)
+            {
+                var toolTip = new ToolTip();
+                toolTip.ShowAlways = false;
+                string msg = "Высота подголовка не должна превышать остаток" +
+                             " от разности длины болта и длины резьбы, и должна " +
+                             "находится в диапазоне 3-15 мм.";
+                try
+                {
+                    Convert.ToDouble(headRestHeightTextBox.Text);
+                }
+                catch (Exception exception)
+                {
+                    msg = "Строка не должна содержать символы.";
+                }
+
+                toolTip.SetToolTip(
+                    headRestHeightTextBox,
+                    msg);
             }
         }
     }

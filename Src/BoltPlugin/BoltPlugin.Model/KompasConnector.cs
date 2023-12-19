@@ -75,6 +75,11 @@
         private ksCutEvolutionDefinition CutEvolutionDefinition { get; set; }
 
         /// <summary>
+        /// Определение объединение по траектории.
+        /// </summary>
+        private ksBossEvolutionDefinition bossEvolutionDefinition { get; set; }
+
+        /// <summary>
         /// Параметры выдавливания.
         /// </summary>
         private ksExtrusionParam ExtrusionProp { get; set; }
@@ -147,11 +152,45 @@
         }
 
         /// <summary>
+        /// Создание 2D документа окружности.
+        /// </summary>
+        /// <param name="circleDiameter"></param>
+        public void CreateDocument2DCircle(double circleDiameter)
+        {
+            Document2D = DefinitionSketch.BeginEdit();
+            Document2D.ksCircle(0, 0, circleDiameter / 2, 1);
+            DefinitionSketch.EndEdit();
+        }
+
+        /// <summary>
+        /// Создание 2D документа окружности.
+        /// </summary>
+        /// <param name="circleDiameter">Диаметр окружности шляпки.</param>
+        /// <param name="threadDiameter">Номинальный диаметр резьбы.</param>
+        public void CreateDocument2DCircleAndSquare(
+            double circleDiameter,
+            double threadDiameter)
+        {
+            Document2D = DefinitionSketch.BeginEdit();
+            var hexagon = (ksRegularPolygonParam)KompasObject.GetParamStruct(92);
+            hexagon.count = 4;
+            hexagon.ang = 90;
+            hexagon.radius = threadDiameter / 2;
+            hexagon.describe = true;
+            hexagon.style = 1;
+            Document2D.ksRegularPolygon(hexagon);
+            Document2D.ksCircle(0, 0, circleDiameter / 2, 1);
+            DefinitionSketch.EndEdit();
+        }
+
+        /// <summary>
         /// Создание 2D документа шестиугольника и окружности.
         /// </summary>
         /// <param name="boltHeadDiameter">Радиус шляпки болта.</param>
         /// <param name="threadDiameter">Диаметр резьбы.</param>
-        public void CreateDocument2DHexagonAndCircle(double boltHeadDiameter, double threadDiameter)
+        public void CreateDocument2DHexagonAndCircle(
+            double boltHeadDiameter,
+            double threadDiameter)
         {
             Document2D = DefinitionSketch.BeginEdit();
             var hexagon = (ksRegularPolygonParam)KompasObject.GetParamStruct(92);
@@ -235,25 +274,78 @@
         /// <summary>
         /// Создание операции выреза по траектории.
         /// </summary>
-        public void CreateCutTParam()
+        public void CreateCutTParam(bool BoltHeadType)
         {
-            EntityCutEvolution = (ksEntity)Part.NewEntity((short)Obj3dType.o3d_cutEvolution);
-            CutEvolutionDefinition = (ksCutEvolutionDefinition)EntityCutEvolution.GetDefinition();
-            CutEvolutionDefinition.cut = true;
-            CutEvolutionDefinition.sketchShiftType = 1;
-            CutEvolutionDefinition.SetSketch(Part.GetObjectByName(
-                "Эскиз:4",
-                (short)Obj3dType.o3d_sketch,
-                true,
-                true));
-            var entityCollection = (ksEntityCollection)CutEvolutionDefinition.PathPartArray();
-            entityCollection.Clear();
-            entityCollection.Add(Part.GetObjectByName(
-                "Спираль:1",
-                (short)Obj3dType.o3d_cylindricSpiral,
-                true,
-                true));
-            EntityCutEvolution.Create();
+            if (BoltHeadType == true)
+            {
+                EntityCutEvolution = (ksEntity)Part.NewEntity((short)Obj3dType.o3d_cutEvolution);
+                CutEvolutionDefinition = (ksCutEvolutionDefinition)EntityCutEvolution.GetDefinition();
+                CutEvolutionDefinition.cut = true;
+                CutEvolutionDefinition.sketchShiftType = 1;
+                CutEvolutionDefinition.SetSketch(Part.GetObjectByName(
+                    "Эскиз:4",
+                    (short)Obj3dType.o3d_sketch,
+                    true,
+                    true));
+                var entityCollection = (ksEntityCollection)CutEvolutionDefinition.PathPartArray();
+                entityCollection.Clear();
+                entityCollection.Add(Part.GetObjectByName(
+                    "Спираль:1",
+                    (short)Obj3dType.o3d_cylindricSpiral,
+                    true,
+                    true));
+                EntityCutEvolution.Create();
+            }
+            else
+            {
+                EntityCutEvolution = (ksEntity)Part.NewEntity((short)Obj3dType.o3d_bossEvolution);
+                bossEvolutionDefinition = (ksBossEvolutionDefinition)EntityCutEvolution.GetDefinition();
+                bossEvolutionDefinition.sketchShiftType = 1;
+                bossEvolutionDefinition.SetSketch(Part.GetObjectByName(
+                    "Эскиз:5",
+                    (short)Obj3dType.o3d_sketch,
+                    true,
+                    true));
+                var entityCollection = (ksEntityCollection)bossEvolutionDefinition.PathPartArray();
+                entityCollection.Clear();
+                entityCollection.Add(Part.GetObjectByName(
+                    "Спираль:1",
+                    (short)Obj3dType.o3d_cylindricSpiral,
+                    true,
+                    true));
+                EntityCutEvolution.Create();
+            }
+        }
+
+        /// <summary>
+        /// Метод для создания скругления на выбранном ребре.
+        /// </summary>
+        /// <param name="chamferRadius">Радиус скругления.</param>
+        /// <param name="x">Координата ребра по X.</param>
+        /// <param name="y">Координата ребра по Y.</param>
+        /// <param name="z">Координата ребра по Z.</param>
+        public void CreateChamfer(
+            double chamferRadius,
+            double x,
+            double y,
+            double z)
+        {
+            var chamferEntity = (ksEntity)Part.NewEntity((short)Obj3dType.o3d_fillet);
+            var chamferDefinition = (ksFilletDefinition)chamferEntity.GetDefinition();
+
+            if (chamferDefinition == null)
+            {
+                return;
+            }
+
+            chamferDefinition.radius = chamferRadius;
+            chamferDefinition.tangent = true;
+            var entityArray = (ksEntityCollection)chamferDefinition.array();
+            var entityCollection = (ksEntityCollection)Part.EntityCollection((short)Obj3dType.o3d_edge);
+            entityCollection.SelectByPoint(x, y, z);
+            var entityEdge = entityCollection.Last();
+            entityArray.Add(entityEdge);
+            chamferEntity.Create();
         }
     }
 }
